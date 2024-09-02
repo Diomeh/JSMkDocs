@@ -23,7 +23,7 @@ const newLine = (string, indent = 0) => {
 	return `\n${newString}`;
 }
 
-const formatFilename = (pageName) => pageName.toLowerCase().replace(/\s+/g, '-')
+const formatFilename = (pageName) => pageName.toLowerCase().replace(/\s+/gu, '-')
 
 const getTimeString = () => {
 	const maxLen = 8;
@@ -63,8 +63,8 @@ const writePages = (docsTree, writePath, promises, stream, indent = 0) => {
 
 		promises.push(writePromise);
 
-		let relWritePath = writePath.replace(/^.*docs[/\\]?(.*)$/, '$1');
-		relWritePath = path.join(relWritePath, fileName).replace(/\\/g, '/');
+		let relWritePath = writePath.replace(/^.*docs[/\\]?(.*)$/u, '$1');
+		relWritePath = path.join(relWritePath, fileName).replace(/\\/gu, '/');
 		stream.write(` '${relWritePath}'`);
 	}
 }

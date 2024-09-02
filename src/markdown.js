@@ -4,14 +4,14 @@
  * concatenated representing a full markdown page.
  */
 
-const typeRgx = /\{([a-zA-Z[\]]+)\}/.source;
-const nameRgx = /([a-zA-Z0-9-.[\]]+)(?:\s+-)?/.source;
-const descRgx = /([^-].+)/.source;
+const typeRgx = /\{([a-zA-Z[\]]+)\}/u.source;
+const nameRgx = /([a-zA-Z0-9-.[\]]+)(?:\s+-)?/u.source;
+const descRgx = /([^-].+)/u.source;
 
 // Match valid param and returns strings as output by dox
-const descTagRgx = new RegExp(`^${nameRgx}\\s+${descRgx}$`);
-const paramTagRgx = new RegExp(`^${typeRgx}\\s+${nameRgx}\\s+${descRgx}$`);
-const returnsTagRgx = new RegExp(`^${typeRgx}\\s+${descRgx}$`);
+const descTagRgx = new RegExp(`^${nameRgx}\\s+${descRgx}$`, "u");
+const paramTagRgx = new RegExp(`^${typeRgx}\\s+${nameRgx}\\s+${descRgx}$`, "u");
+const returnsTagRgx = new RegExp(`^${typeRgx}\\s+${descRgx}$`, "u");
 
 const getTagByType = (tags, type) => tags.filter((t) => t.type === type)[0]
 

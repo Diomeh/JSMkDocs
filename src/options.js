@@ -14,8 +14,8 @@ const options = {
 	regex: {
 		alias: 'r',
 		help: 'regex string for matching files in the source directory',
-		parser: (value) => new RegExp(value),
-		value: new RegExp(/\.js$/),
+		parser: (value) => new RegExp(value, 'u'),
+		value: new RegExp(/\.js$/u, "u"),
 	},
 	src: {
 		alias: 's',
