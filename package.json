@@ -48,9 +48,7 @@
     "bluebird": "^3.7.2",
     "cli-color": "^2.0.4",
     "dox": "^1.0.0",
-    "minimist": "^1.2.8",
-    "mkdirp": "^3.0.1",
-    "rimraf": "^6.0.1"
+    "minimist": "^1.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

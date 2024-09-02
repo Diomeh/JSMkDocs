@@ -10,9 +10,7 @@ import clic from 'cli-color';
 import fs from 'fs';
 import { getMarkdownString } from './markdown';
 import { log } from './logger';
-import mkdirp from 'mkdirp';
 import path from 'path';
-import rimraf from 'rimraf';
 
 const newLine = (string, indent = 0) => {
 	let newString = string;
@@ -57,7 +55,12 @@ const writePages = (docsTree, writePath, promises, stream, indent = 0) => {
 		const writePromise = new Promise((resolve, reject) => {
 			const text = getMarkdownString(docsTree);
 
-			mkdirp(writePath, () => {
+			fs.mkdir(writePath, { recursive: true }, (err, _) => {
+				if (err) {
+					log(clic.red(`[${getTimeString()}] ${err}`));
+					return;
+				}
+
 				writeMdFile(text, filePath, resolve, reject);
 			});
 		});
@@ -96,8 +99,13 @@ export const generateDocs = (docsTrees) => {
 		const success = clic.green(`"${docsName}" docs write complete`);
 		const fail = clic.red(`"${docsName}" docs write failed`);
 
-		rimraf(path.join(outputDir, docsName), {}, () => {
-			mkdirp(markdownPath, () => {
+		fs.rm(path.join(outputDir, docsName), { force: true, recursive: true }, () => {
+			fs.mkdir(markdownPath, { recursive: true }, (err, _) => {
+				if (err) {
+					log(clic.red(`[${getTimeString()}] ${err}`));
+					return;
+				}
+
 				const stream = fs.createWriteStream(mkdocsYmlPath, 'utf8');
 				stream.write(`site_name: ${docsName}`);
 				stream.write(newLine('pages:'));
