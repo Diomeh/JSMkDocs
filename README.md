@@ -20,12 +20,12 @@ The easiest way to get ***JsMkDocs*** is with NPM: `npm install --save-dev jsmkd
 
 Use the command `jsmkdocs` with the following options to generate your docs:
 
-Name | Alias | Default | Description
---- | :---: | --- | ---
-ignore | i | `.git,node_modules` | comma-separated list of files/directories to ignore
-out | o | `./docs_src` | relative path to the output directory
-regex | r | `\.js$` | regex string for matching files in the source directory
-src | s | `./` | relative path to the source directory
+| Name   | Alias | Default             | Description                                             |
+|--------|:-----:|---------------------|---------------------------------------------------------|
+| ignore |   i   | `.git,node_modules` | comma-separated list of files/directories to ignore     |
+| out    |   o   | `./docs_src`        | relative path to the output directory                   |
+| regex  |   r   | `\.js$`             | regex string for matching files in the source directory |
+| src    |   s   | `./`                | relative path to the source directory                   |
 
 ## Comment Format
 
