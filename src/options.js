@@ -1,3 +1,5 @@
+import { log } from './logger';
+
 const options = {
 	ignore: {
 		alias: 'i',
@@ -32,13 +34,13 @@ const getOptionByAlias = (alias) => {
 }
 
 const displayHelp = () => {
-	Object.keys(options).forEach((k) => console.log(`   --${k}   \t-${options[k].alias}\t${options[k].help}`));
+	Object.keys(options).forEach((k) => log(`   --${k}   \t-${options[k].alias}\t${options[k].help}`));
 
 	process.exit();
 }
 
 const displayError = (optionName) => {
-	console.log(`'${optionName}' is not a supported option!\n`);
+	log(`'${optionName}' is not a supported option!\n`);
 	displayHelp();
 }
 

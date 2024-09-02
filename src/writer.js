@@ -9,6 +9,7 @@ import Promise from 'bluebird';
 import clic from 'cli-color';
 import fs from 'fs';
 import { getMarkdownString } from './markdown';
+import { log } from './logger';
 import mkdirp from 'mkdirp';
 import path from 'path';
 import rimraf from 'rimraf';
@@ -35,7 +36,7 @@ const writeMdFile = (text, filePath, resolve, reject) => {
 		if (error) {
 			reject(error);
 		} else {
-			console.log(`[${getTimeString()}] ${filePath}`);
+			log(`[${getTimeString()}] ${filePath}`);
 			resolve(filePath);
 		}
 	});
@@ -104,11 +105,12 @@ export const generateDocs = (docsTrees) => {
 				writeMkdocs(dt, markdownPath, stream).then(
 					(filePaths) => {
 						stream.end();
-						console.log(`[${getTimeString()}] ${success}`);
+						log(`[${getTimeString()}] ${success}`);
 					},
 					(error) => {
 						stream.end();
-						console.log(`[${getTimeString()}] ${fail}`);
+						log(`[${getTimeString()}] ${fail}`);
+						log(`[${getTimeString()}] ${error}`);
 					}
 				);
 			});
