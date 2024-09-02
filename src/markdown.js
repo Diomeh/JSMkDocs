@@ -83,7 +83,8 @@ const getCommentString = (comment) => {
 		markdownString += dataRows;
 	}
 
-	return (markdownString += getCommentReturns(comment));
+	markdownString += getCommentReturns(comment);
+	return markdownString;
 }
 
 export const getMarkdownString = (docsTree) => {
