@@ -37,7 +37,9 @@
   },
   "scripts": {
     "build": "gulp build",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "test": "jest",
+    "lint": "eslint --cache --fix ."
   },
   "dependencies": {
     "bluebird": "^3.7.2",

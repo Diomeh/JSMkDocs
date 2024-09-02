@@ -11,7 +11,7 @@ src
 gulpfile.js
 
 # Linting
-.eslintrc
+.eslintcache
 
 # This file
 .npmignore

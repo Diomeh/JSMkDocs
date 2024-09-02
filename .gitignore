@@ -9,6 +9,7 @@ bin
 
 # Local development
 .direnv
+.eslintcache
 
 # IDE's
 .idea
