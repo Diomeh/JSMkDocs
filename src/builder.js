@@ -5,12 +5,12 @@
  * form for traversing.
  */
 
-function parsePathNames(comment) {
+const parsePathNames = (comment) => {
 	const doxdownTag = comment.tags.filter((t) => t.type === 'docs')[0];
-	return doxdownTag.string.split(/\s*\/{2}\s*/);
+	return doxdownTag.string.split(/\s*\/{2}\s*/u);
 }
 
-function getPage(docsTree, pageName) {
+const getPage = (docsTree, pageName) => {
 	if (!docsTree.subPages) {
 		docsTree.subPages = [];
 	}
@@ -25,7 +25,7 @@ function getPage(docsTree, pageName) {
 	return page;
 }
 
-function buildPages(docsTree, pathNames, comment) {
+const buildPages = (docsTree, pathNames, comment) => {
 	if (pathNames.length > 1) {
 		const page = getPage(docsTree, pathNames[0]);
 		buildPages(page, pathNames.slice(1), comment);
@@ -44,7 +44,7 @@ function buildPages(docsTree, pathNames, comment) {
 	}
 }
 
-function assignCommentsToDocsTrees(comments) {
+const assignCommentsToDocsTrees = (comments) => {
 	const docsTrees = [];
 
 	comments.forEach((c) => {
@@ -63,7 +63,7 @@ function assignCommentsToDocsTrees(comments) {
 	return docsTrees;
 }
 
-export function getDocsTrees(comments) {
+export const getDocsTrees = (comments) => {
 	const docsTrees = assignCommentsToDocsTrees(comments);
 
 	docsTrees.forEach((dt) => {

@@ -25,28 +25,28 @@ const options = {
 	},
 };
 
-function getOptionByAlias(alias) {
+const getOptionByAlias = (alias) => {
 	const option = Object.keys(options).filter((k) => options[k].alias === alias)[0];
 
 	return options[option];
 }
 
-function displayHelp() {
+const displayHelp = () => {
 	Object.keys(options).forEach((k) => console.log(`   --${k}   \t-${options[k].alias}\t${options[k].help}`));
 
 	process.exit();
 }
 
-function displayError(optionName) {
+const displayError = (optionName) => {
 	console.log(`'${optionName}' is not a supported option!\n`);
 	displayHelp();
 }
 
-export function get(optionName) {
+export const get = (optionName) => {
 	return options[optionName].value;
 }
 
-export function set(optionName, value) {
+export const set = (optionName, value) => {
 	if (optionName === 'help' || optionName === 'h') {
 		displayHelp();
 	}

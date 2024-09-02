@@ -13,21 +13,21 @@ const descTagRgx = new RegExp(`^${nameRgx}\\s+${descRgx}$`);
 const paramTagRgx = new RegExp(`^${typeRgx}\\s+${nameRgx}\\s+${descRgx}$`);
 const returnsTagRgx = new RegExp(`^${typeRgx}\\s+${descRgx}$`);
 
-function getTagByType(tags, type) {
+const getTagByType = (tags, type) => {
 	return tags.filter((t) => t.type === type)[0];
 }
 
-function getCommentNameAndDesc(comment) {
+const getCommentNameAndDesc = (comment) => {
 	const descTag = getTagByType(comment.tags, 'desc');
 	const match = descTag.string.match(descTagRgx);
 	return `### ${match[1]}\n${match[2]}\n<br><br>\n`;
 }
 
-function getCommentTableHead(heading) {
+const getCommentTableHead = (heading) => {
 	return `#### ${heading}\nName | Type | Description\n--- | --- | ---\n`;
 }
 
-function getCommentTableRows(comment, tagType) {
+const getCommentTableRows = (comment, tagType) => {
 	const tags = comment.tags.filter((t) => t.type === tagType);
 
 	if (tags.length === 0) {
@@ -48,7 +48,7 @@ function getCommentTableRows(comment, tagType) {
 	return `${rows.join('')}\n`;
 }
 
-function getCommentReturns(comment) {
+const getCommentReturns = (comment) => {
 	const returnsTag = getTagByType(comment.tags, 'returns');
 
 	// Skip if no returns tag
@@ -66,11 +66,11 @@ function getCommentReturns(comment) {
 	return `#### Returns\n\`${match[1]}\` ${match[2]}\n<br><br>\n`;
 }
 
-// function getCommentCode (comment) {
+// const getCommentCode  = (comment) => {
 // 	return `#### Code\n\`\`\`javascript\n${comment.code}\n\`\`\`\n<br><br>\n`;
 // }
 
-function getCommentString(comment) {
+const getCommentString = (comment) => {
 	let markdownString = getCommentNameAndDesc(comment);
 
 	const paramsRows = getCommentTableRows(comment, 'param');
@@ -90,7 +90,7 @@ function getCommentString(comment) {
 	return (markdownString += getCommentReturns(comment));
 }
 
-export function getMarkdownString(docsTree) {
+export const getMarkdownString = (docsTree) => {
 	let markdownString = '';
 
 	Object.keys(docsTree.sections).forEach((s) => {

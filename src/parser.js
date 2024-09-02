@@ -10,7 +10,7 @@ import path from 'path';
 
 import * as options from './options';
 
-function getFilePaths(dir, filePaths = []) {
+const getFilePaths = (dir, filePaths = []) => {
 	// Remove ignored files / directories
 	const fileOrDirNames = fs.readdirSync(dir).filter((fdn) => !(options.get('ignore').indexOf(fdn) + 1));
 
@@ -31,7 +31,7 @@ function getFilePaths(dir, filePaths = []) {
 	return filePaths;
 }
 
-export function getDoxdownComments() {
+export const getDoxdownComments = () => {
 	const comments = [];
 	const filePaths = getFilePaths(options.get('src'));
 

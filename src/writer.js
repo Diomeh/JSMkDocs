@@ -14,7 +14,7 @@ import rimraf from 'rimraf';
 import * as options from './options';
 import { getMarkdownString } from './markdown';
 
-function newLine(string, indent = 0) {
+const newLine = (string, indent = 0) => {
 	let newString = string;
 
 	for (let i = 0; i < indent; i++) {
@@ -24,15 +24,15 @@ function newLine(string, indent = 0) {
 	return `\n${newString}`;
 }
 
-function formatFilename(pageName) {
+const formatFilename = (pageName) => {
 	return pageName.toLowerCase().replace(/\s+/g, '-');
 }
 
-function getTimeString() {
+const getTimeString = () => {
 	return new Date().toTimeString().substring(0, 8);
 }
 
-function writeMdFile(text, filePath, resolve, reject) {
+const writeMdFile = (text, filePath, resolve, reject) => {
 	fs.writeFile(filePath, text, 'utf8', (error) => {
 		if (error) {
 			reject(error);
@@ -43,7 +43,7 @@ function writeMdFile(text, filePath, resolve, reject) {
 	});
 }
 
-function writePages(docsTree, writePath, promises, stream, indent = 0) {
+const writePages = (docsTree, writePath, promises, stream, indent = 0) => {
 	stream.write(newLine(`- '${docsTree.pageName}':`, indent));
 
 	if (docsTree.subPages) {
@@ -71,7 +71,7 @@ function writePages(docsTree, writePath, promises, stream, indent = 0) {
 	}
 }
 
-function writeMkdocs(docsTree, markdownPath, stream) {
+const writeMkdocs = (docsTree, markdownPath, stream) => {
 	const indexPath = path.join(markdownPath, 'index.md');
 	const indexPromise = new Promise((resolve, reject) => {
 		writeMdFile(`# ${docsTree.docsName}`, indexPath, resolve, reject);
@@ -85,7 +85,7 @@ function writeMkdocs(docsTree, markdownPath, stream) {
 	return Promise.all(promises);
 }
 
-export function generateDocs(docsTrees) {
+export const generateDocs = (docsTrees) => {
 	const outputDir = options.get('out');
 	const outputPath = path.resolve(process.cwd(), outputDir);
 
