@@ -6,7 +6,7 @@
  */
 
 const parsePathNames = (comment) => {
-	const doxdownTag = comment.tags.filter((t) => t.type === 'docs')[0];
+	const [doxdownTag] = comment.tags.filter((t) => t.type === 'docs');
 	return doxdownTag.string.split(/\s*\/{2}\s*/u);
 }
 
@@ -15,7 +15,7 @@ const getPage = (docsTree, pageName) => {
 		docsTree.subPages = [];
 	}
 
-	let page = docsTree.subPages.filter((p) => p.pageName === pageName)[0];
+	let [page] = docsTree.subPages.filter((p) => p.pageName === pageName);
 
 	if (!page) {
 		page = { pageName };
@@ -30,7 +30,7 @@ const buildPages = (docsTree, pathNames, comment) => {
 		const page = getPage(docsTree, pathNames[0]);
 		buildPages(page, pathNames.slice(1), comment);
 	} else {
-		const section = pathNames[0];
+		const [section] = pathNames;
 
 		if (!docsTree.sections) {
 			docsTree.sections = {};
@@ -48,9 +48,9 @@ const assignCommentsToDocsTrees = (comments) => {
 	const docsTrees = [];
 
 	comments.forEach((c) => {
-		const docsName = parsePathNames(c)[0];
+		const [docsName] = parsePathNames(c);
 
-		let docsTree = docsTrees.filter((dt) => dt.docsName === docsName)[0];
+		let [docsTree] = docsTrees.filter((dt) => dt.docsName === docsName);
 
 		if (!docsTree) {
 			docsTree = { docsName, comments: [] };
