@@ -42,9 +42,7 @@ const displayError = (optionName) => {
 	displayHelp();
 }
 
-export const get = (optionName) => {
-	return options[optionName].value;
-}
+export const get = (optionName) => options[optionName].value
 
 export const set = (optionName, value) => {
 	if (optionName === 'help' || optionName === 'h') {

@@ -24,13 +24,9 @@ const newLine = (string, indent = 0) => {
 	return `\n${newString}`;
 }
 
-const formatFilename = (pageName) => {
-	return pageName.toLowerCase().replace(/\s+/g, '-');
-}
+const formatFilename = (pageName) => pageName.toLowerCase().replace(/\s+/g, '-')
 
-const getTimeString = () => {
-	return new Date().toTimeString().substring(0, 8);
-}
+const getTimeString = () => new Date().toTimeString().substring(0, 8)
 
 const writeMdFile = (text, filePath, resolve, reject) => {
 	fs.writeFile(filePath, text, 'utf8', (error) => {

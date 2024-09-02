@@ -13,9 +13,7 @@ const descTagRgx = new RegExp(`^${nameRgx}\\s+${descRgx}$`);
 const paramTagRgx = new RegExp(`^${typeRgx}\\s+${nameRgx}\\s+${descRgx}$`);
 const returnsTagRgx = new RegExp(`^${typeRgx}\\s+${descRgx}$`);
 
-const getTagByType = (tags, type) => {
-	return tags.filter((t) => t.type === type)[0];
-}
+const getTagByType = (tags, type) => tags.filter((t) => t.type === type)[0]
 
 const getCommentNameAndDesc = (comment) => {
 	const descTag = getTagByType(comment.tags, 'desc');
@@ -23,9 +21,7 @@ const getCommentNameAndDesc = (comment) => {
 	return `### ${match[1]}\n${match[2]}\n<br><br>\n`;
 }
 
-const getCommentTableHead = (heading) => {
-	return `#### ${heading}\nName | Type | Description\n--- | --- | ---\n`;
-}
+const getCommentTableHead = (heading) => `#### ${heading}\nName | Type | Description\n--- | --- | ---\n`
 
 const getCommentTableRows = (comment, tagType) => {
 	const tags = comment.tags.filter((t) => t.type === tagType);
