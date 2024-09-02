@@ -1,27 +1,33 @@
-# doxdown
+# JsMkDocs
 
-***doxdown*** is a jsDoc to [MkDocs](http://www.mkdocs.org/) markdown generator. It allows you to control your documentation on a comment by comment basis, choosing the page and document the comment belongs to. This is especially useful when you need to document an API separate to the rest of your codebase.
+***JsMkDocs*** is a [jsDoc](https://jsdoc.app/) to [MkDocs](http://www.mkdocs.org/) markdown generator. 
+It allows you to control your documentation on a comment by comment basis, choosing the page and document the comment belongs to. 
+This is especially useful when you need to document an API separate to the rest of your codebase.
 
-Running it on a directory with the default options will parse all nested JavaScript files and output a `./doxdown` folder. Inside will be a folder for each document with Markdown files and a `mkdocs.yml` file in the format expected by [MkDocs](http://www.mkdocs.org/). You can then run [MkDocs](http://www.mkdocs.org/) on any of those folders to build a site that you can deploy to a server.
+Running it on a directory with the default options will parse all nested JavaScript files and output a `./docs_src` folder. 
+Inside will be a folder for each document with Markdown files and a `mkdocs.yml` file in the format expected by [MkDocs](http://www.mkdocs.org/). 
+You can then run [MkDocs](http://www.mkdocs.org/) on any of those folders to build a site that you can deploy to a server.
 
 ## Installation
 
-The easiest way to get ***doxdown*** is with NPM: `npm install doxdown --global`
+The easiest way to get ***JsMkDocs*** is with NPM: `npm install --save-dev jsmkdocs`
 
 ## Usage / Options
 
-Use the command `doxdown` with the following options to generate your docs:
+Use the command `jsmkdocs` with the following options to generate your docs:
 
 Name | Alias | Default | Description
 --- | :---: | --- | ---
 ignore | i | `.git,node_modules` | comma-separated list of files/directories to ignore
-out | o | `./doxdown` | relative path to the output directory
+out | o | `./docs_src` | relative path to the output directory
 regex | r | `\.js$` | regex string for matching files in the source directory
 src | s | `./` | relative path to the source directory
 
 ## Comment Format
 
-***doxdown*** looks for jsDoc-style comments with a special `@docs` tag in the format `document [// page] // section` which describes where the comment belongs in which document. Use a jsDoc `@desc` to describe the function or event in the format `@name - description`. You can have any number of `@params` or `@data` tags and one `@returns` tag.
+***JsMkDocs*** looks for jsDoc-style comments with a special `@docs` tag in the format `document [// page] // section` which describes where the comment belongs in which document. 
+Use a jsDoc `@desc` to describe the function or event in the format `@name - description`. 
+You can have any number of `@params` or `@data` tags and one `@returns` tag.
 
 ```javascript
 /**
