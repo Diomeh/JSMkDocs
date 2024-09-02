@@ -1,4 +1,4 @@
-import { log } from './logger';
+import { logError, logInfo } from './logger';
 
 const options = {
 	ignore: {
@@ -34,13 +34,13 @@ const getOptionByAlias = (alias) => {
 };
 
 const displayHelp = () => {
-	Object.keys(options).forEach((k) => log(`   --${k}   \t-${options[k].alias}\t${options[k].help}`));
+	Object.keys(options).forEach((k) => logInfo(`   --${k}   \t-${options[k].alias}\t${options[k].help}`));
 
 	process.exit();
 };
 
 const displayError = (optionName) => {
-	log(`'${optionName}' is not a supported option!\n`);
+	logError(`'${optionName}' is not a supported option!\n`);
 	displayHelp();
 };
 

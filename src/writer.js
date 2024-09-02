@@ -7,10 +7,11 @@
  */
 
 import * as options from './options';
+import { logError, logInfo, logSuccess } from './logger';
+
 import clic from 'cli-color';
 import fs from 'fs';
 import { getMarkdownString } from './markdown';
-import { log } from './logger';
 import path from 'path';
 
 const newLine = (string, indent = 0) => {
@@ -33,9 +34,10 @@ const getTimeString = () => {
 const writeMdFile = (text, filePath, resolve, reject) => {
 	fs.writeFile(filePath, text, 'utf8', (error) => {
 		if (error) {
+			logError(error);
 			reject(error);
 		} else {
-			log(`[${getTimeString()}] ${filePath}`);
+			logInfo(filePath);
 			resolve(filePath);
 		}
 	});
@@ -58,7 +60,7 @@ const writePages = (docsTree, writePath, promises, stream, indent = 0) => {
 
 			fs.mkdir(writePath, { recursive: true }, (err, _) => {
 				if (err) {
-					log(clic.red(`[${getTimeString()}] ${err}`));
+					logError(err);
 					return;
 				}
 
@@ -103,7 +105,7 @@ export const generateDocs = (docsTrees) => {
 		fs.rm(path.join(outputDir, docsName), { force: true, recursive: true }, () => {
 			fs.mkdir(markdownPath, { recursive: true }, (err, _) => {
 				if (err) {
-					log(clic.red(`[${getTimeString()}] ${err}`));
+					logError(err);
 					return;
 				}
 
@@ -114,12 +116,12 @@ export const generateDocs = (docsTrees) => {
 				writeMkdocs(dt, markdownPath, stream).then(
 					(_filePaths) => {
 						stream.end();
-						log(`[${getTimeString()}] ${success}`);
+						logSuccess(success);
 					},
 					(error) => {
 						stream.end();
-						log(`[${getTimeString()}] ${fail}`);
-						log(`[${getTimeString()}] ${error}`);
+						logError(fail);
+						logError(error);
 					}
 				);
 			});
