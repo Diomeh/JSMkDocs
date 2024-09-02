@@ -8,7 +8,6 @@
     "markdown",
     "generator"
   ],
-  "type": "module",
   "homepage": "https://github.com/Diomeh/JSMkDocs/blob/master/README.md",
   "bugs": {
     "url": "https://github.com/Diomeh/JSMkDocs/issues",
@@ -37,6 +36,7 @@
     "url": "git+https://github.com/Diomeh/JSMkDocs.git"
   },
   "scripts": {
+    "clean": "gulp clean",
     "build": "gulp build",
     "watch": "gulp watch",
     "test": "jest",
