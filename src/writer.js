@@ -4,15 +4,15 @@
  * to a mkdocs.yml file.
  */
 
+import * as options from './options';
+import Promise from 'bluebird';
 import clic from 'cli-color';
 import fs from 'fs';
+import { getMarkdownString } from './markdown';
 import mkdirp from 'mkdirp';
 import path from 'path';
-import Promise from 'bluebird';
 import rimraf from 'rimraf';
 
-import * as options from './options';
-import { getMarkdownString } from './markdown';
 
 const newLine = (string, indent = 0) => {
 	let newString = string;

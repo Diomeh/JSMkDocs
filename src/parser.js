@@ -4,11 +4,11 @@
  * returns an array of doxdown comment objects.
  */
 
+import * as options from './options';
 import dox from 'dox';
 import fs from 'fs';
 import path from 'path';
 
-import * as options from './options';
 
 const getFilePaths = (dir, filePaths = []) => {
 	// Remove ignored files / directories

@@ -1,11 +1,10 @@
 #! /usr/bin/env node
 
-import minimist from 'minimist';
-
 import * as options from './options';
-import { getDoxdownComments } from './parser';
-import { getDocsTrees } from './builder';
 import { generateDocs } from './writer';
+import { getDocsTrees } from './builder';
+import { getDoxdownComments } from './parser';
+import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
 
