@@ -2,6 +2,10 @@
 
 This is a fork of [doxdown](https://github.com/Degree53/doxdown)
 
+# Beware!
+
+As of now, this is a work in progress and no stable release has been made
+
 ***
 
 ***JsMkDocs*** is a [jsDoc](https://jsdoc.app/) to [MkDocs](http://www.mkdocs.org/) markdown generator. 
