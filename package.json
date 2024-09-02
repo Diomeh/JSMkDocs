@@ -1,5 +1,5 @@
 {
-  "name": "JsMkDocs",
+  "name": "jsmkdocs",
   "version": "0.0.1",
   "description": "jsDoc to MkDocs markdown generator",
   "keywords": [
@@ -8,6 +8,7 @@
     "markdown",
     "generator"
   ],
+  "type": "module",
   "homepage": "https://github.com/Diomeh/JSMkDocs/blob/master/README.md",
   "bugs": {
     "url": "https://github.com/Diomeh/JSMkDocs/issues",
@@ -57,7 +58,6 @@
     "@babel/preset-env": "^7.25.4",
     "@eslint/js": "^9.9.1",
     "@types/jest": "^29.5.12",
-    "del": "^7.1.0",
     "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.9.0",

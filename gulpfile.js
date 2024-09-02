@@ -1,10 +1,8 @@
-const babel = require('gulp-babel');
-const del = require('del');
-const gulp = require('gulp');
+import babel from 'gulp-babel';
+import gulp from 'gulp';
+import fs from "fs";
 
-gulp.task('clean', function () {
-	return del.sync(['./bin/*']);
-});
+gulp.task('clean', () => fs.rmSync('./bin', { recursive: true, force: true }));
 
 gulp.task('build', ['clean'], function () {
 	return gulp
