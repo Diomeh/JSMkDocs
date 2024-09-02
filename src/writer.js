@@ -1,3 +1,5 @@
+// noinspection JSUnresolvedReference
+
 /**
  * Traverses each 'docsTree' object and writing markdown pages for
  * each level with comments as well as writing titles and filenames
@@ -5,7 +7,6 @@
  */
 
 import * as options from './options';
-import Promise from 'bluebird';
 import clic from 'cli-color';
 import fs from 'fs';
 import { getMarkdownString } from './markdown';

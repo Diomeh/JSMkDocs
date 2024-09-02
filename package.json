@@ -45,7 +45,6 @@
     "lint": "npm run lint:style && npm run lint:behavior"
   },
   "dependencies": {
-    "bluebird": "^3.7.2",
     "cli-color": "^2.0.4",
     "dox": "^1.0.0",
     "minimist": "^1.2.8"
