@@ -6,7 +6,9 @@ import { getDocsTrees } from './builder';
 import { getDoxdownComments } from './parser';
 import minimist from 'minimist';
 
-const argv = minimist(process.argv.slice(2));
+const totalArgs = 2;
+
+const argv = minimist(process.argv.slice(totalArgs));
 
 // Set options but skip the unnamed arguments property
 Object.keys(argv)

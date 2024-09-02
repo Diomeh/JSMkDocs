@@ -13,7 +13,6 @@ import mkdirp from 'mkdirp';
 import path from 'path';
 import rimraf from 'rimraf';
 
-
 const newLine = (string, indent = 0) => {
 	let newString = string;
 
@@ -26,7 +25,10 @@ const newLine = (string, indent = 0) => {
 
 const formatFilename = (pageName) => pageName.toLowerCase().replace(/\s+/g, '-')
 
-const getTimeString = () => new Date().toTimeString().substring(0, 8)
+const getTimeString = () => {
+	const maxLen = 8;
+	return new Date().toTimeString().substring(0, maxLen);
+}
 
 const writeMdFile = (text, filePath, resolve, reject) => {
 	fs.writeFile(filePath, text, 'utf8', (error) => {
