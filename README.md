@@ -6,19 +6,19 @@ This is a fork of [doxdown](https://github.com/Degree53/doxdown)
 
 As of now, this is a work in progress and no stable release has been made
 
-***
+---
 
-***JsMkDocs*** is a [jsDoc](https://jsdoc.app/) to [MkDocs](http://www.mkdocs.org/) markdown generator. 
-It allows you to control your documentation on a comment by comment basis, choosing the page and document the comment belongs to. 
+**_JsMkDocs_** is a [jsDoc](https://jsdoc.app/) to [MkDocs](http://www.mkdocs.org/) markdown generator.
+It allows you to control your documentation on a comment by comment basis, choosing the page and document the comment belongs to.
 This is especially useful when you need to document an API separate to the rest of your codebase.
 
-Running it on a directory with the default options will parse all nested JavaScript files and output a `./docs_src` folder. 
-Inside will be a folder for each document with Markdown files and a `mkdocs.yml` file in the format expected by [MkDocs](http://www.mkdocs.org/). 
+Running it on a directory with the default options will parse all nested JavaScript files and output a `./docs_src` folder.
+Inside will be a folder for each document with Markdown files and a `mkdocs.yml` file in the format expected by [MkDocs](http://www.mkdocs.org/).
 You can then run [MkDocs](http://www.mkdocs.org/) on any of those folders to build a site that you can deploy to a server.
 
 ## Installation
 
-The easiest way to get ***JsMkDocs*** is with NPM: `npm install --save-dev jsmkdocs`
+The easiest way to get **_JsMkDocs_** is with NPM: `npm install --save-dev jsmkdocs`
 
 ## Usage / Options
 
@@ -33,8 +33,8 @@ Use the command `jsmkdocs` with the following options to generate your docs:
 
 ## Comment Format
 
-***JsMkDocs*** looks for jsDoc-style comments with a special `@docs` tag in the format `document [// page] // section` which describes where the comment belongs in which document. 
-Use a jsDoc `@desc` to describe the function or event in the format `@name - description`. 
+**_JsMkDocs_** looks for jsDoc-style comments with a special `@docs` tag in the format `document [// page] // section` which describes where the comment belongs in which document.
+Use a jsDoc `@desc` to describe the function or event in the format `@name - description`.
 You can have any number of `@params` or `@data` tags and one `@returns` tag.
 
 ```javascript
@@ -47,14 +47,13 @@ You can have any number of `@params` or `@data` tags and one `@returns` tag.
  * @returns {String[]} An array of usernames
  */
 
-function getUsernames (users, limit) {
-	
+function getUsernames(users, limit) {
 	const usernames = [];
-	
+
 	for (let i = 0; i < limit; i++) {
 		usernames.push(users[i].name);
 	}
-	
+
 	return usernames;
 }
 
@@ -70,15 +69,14 @@ function getUsernames (users, limit) {
  */
 
 SomeTrackingAPI.trigger('registration-complete', {
-	forename: "Sherlock",
-	surname: "Holmes",
+	forename: 'Sherlock',
+	surname: 'Holmes',
 	dob: dateOfBirth,
 	address: {
-		house: "221B",
-		postcode: "NW16XE"
-	}
+		house: '221B',
+		postcode: 'NW16XE',
+	},
 });
-
 ```
 
 ## License
@@ -130,4 +128,5 @@ Where `type` is one of the following:
 For more information, refer to the [Conventional Commits Specification](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## TODO
+
 - Replace `regex` option with glob pattern for matching files and directories.

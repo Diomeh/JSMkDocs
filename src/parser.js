@@ -9,7 +9,6 @@ import dox from 'dox';
 import fs from 'fs';
 import path from 'path';
 
-
 const getFilePaths = (dir, filePaths = []) => {
 	// Remove ignored files / directories
 	const fileOrDirNames = fs.readdirSync(dir).filter((fdn) => !(options.get('ignore').indexOf(fdn) + 1));
@@ -29,7 +28,7 @@ const getFilePaths = (dir, filePaths = []) => {
 	});
 
 	return filePaths;
-}
+};
 
 export const getDoxdownComments = () => {
 	const comments = [];
@@ -43,4 +42,4 @@ export const getDoxdownComments = () => {
 
 	// Only return comments with docs tags
 	return comments.filter((c) => c.tags.filter((t) => t.type === 'docs')[0]);
-}
+};

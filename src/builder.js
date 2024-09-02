@@ -8,7 +8,7 @@
 const parsePathNames = (comment) => {
 	const [doxdownTag] = comment.tags.filter((t) => t.type === 'docs');
 	return doxdownTag.string.split(/\s*\/{2}\s*/u);
-}
+};
 
 const getPage = (docsTree, pageName) => {
 	if (!docsTree.subPages) {
@@ -23,7 +23,7 @@ const getPage = (docsTree, pageName) => {
 	}
 
 	return page;
-}
+};
 
 const buildPages = (docsTree, pathNames, comment) => {
 	if (pathNames.length > 1) {
@@ -42,7 +42,7 @@ const buildPages = (docsTree, pathNames, comment) => {
 
 		docsTree.sections[section].push(comment);
 	}
-}
+};
 
 const assignCommentsToDocsTrees = (comments) => {
 	const docsTrees = [];
@@ -61,7 +61,7 @@ const assignCommentsToDocsTrees = (comments) => {
 	});
 
 	return docsTrees;
-}
+};
 
 export const getDocsTrees = (comments) => {
 	const docsTrees = assignCommentsToDocsTrees(comments);
@@ -73,4 +73,4 @@ export const getDocsTrees = (comments) => {
 	});
 
 	return docsTrees;
-}
+};

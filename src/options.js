@@ -17,7 +17,7 @@ const options = {
 		alias: 'r',
 		help: 'regex string for matching files in the source directory',
 		parser: (value) => new RegExp(value, 'u'),
-		value: new RegExp(/\.js$/u, "u"),
+		value: new RegExp(/\.js$/u, 'u'),
 	},
 	src: {
 		alias: 's',
@@ -31,20 +31,20 @@ const getOptionByAlias = (alias) => {
 	const [option] = Object.keys(options).filter((k) => options[k].alias === alias);
 
 	return options[option];
-}
+};
 
 const displayHelp = () => {
 	Object.keys(options).forEach((k) => log(`   --${k}   \t-${options[k].alias}\t${options[k].help}`));
 
 	process.exit();
-}
+};
 
 const displayError = (optionName) => {
 	log(`'${optionName}' is not a supported option!\n`);
 	displayHelp();
-}
+};
 
-export const get = (optionName) => options[optionName].value
+export const get = (optionName) => options[optionName].value;
 
 export const set = (optionName, value) => {
 	if (optionName === 'help' || optionName === 'h') {
@@ -58,4 +58,4 @@ export const set = (optionName, value) => {
 	}
 
 	option.value = option.parser(value);
-}
+};

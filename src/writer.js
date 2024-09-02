@@ -22,14 +22,14 @@ const newLine = (string, indent = 0) => {
 	}
 
 	return `\n${newString}`;
-}
+};
 
-const formatFilename = (pageName) => pageName.toLowerCase().replace(/\s+/gu, '-')
+const formatFilename = (pageName) => pageName.toLowerCase().replace(/\s+/gu, '-');
 
 const getTimeString = () => {
 	const maxLen = 8;
 	return new Date().toTimeString().substring(0, maxLen);
-}
+};
 
 const writeMdFile = (text, filePath, resolve, reject) => {
 	fs.writeFile(filePath, text, 'utf8', (error) => {
@@ -40,7 +40,7 @@ const writeMdFile = (text, filePath, resolve, reject) => {
 			resolve(filePath);
 		}
 	});
-}
+};
 
 const writePages = (docsTree, writePath, promises, stream, indent = 0) => {
 	stream.write(newLine(`- '${docsTree.pageName}':`, indent));
@@ -68,7 +68,7 @@ const writePages = (docsTree, writePath, promises, stream, indent = 0) => {
 		relWritePath = path.join(relWritePath, fileName).replace(/\\/gu, '/');
 		stream.write(` '${relWritePath}'`);
 	}
-}
+};
 
 const writeMkdocs = (docsTree, markdownPath, stream) => {
 	const indexPath = path.join(markdownPath, 'index.md');
@@ -82,7 +82,7 @@ const writeMkdocs = (docsTree, markdownPath, stream) => {
 	docsTree.subPages.forEach((sp) => writePages(sp, markdownPath, promises, stream));
 
 	return Promise.all(promises);
-}
+};
 
 export const generateDocs = (docsTrees) => {
 	const outputDir = options.get('out');
@@ -116,4 +116,4 @@ export const generateDocs = (docsTrees) => {
 			});
 		});
 	});
-}
+};

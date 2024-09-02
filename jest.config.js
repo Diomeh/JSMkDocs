@@ -12,7 +12,7 @@ const config = {
 	// bail: 0,
 
 	// The directory where Jest should store its cached dependency information
-	cacheDirectory: "./tmp/jest_rs",
+	cacheDirectory: './tmp/jest_rs',
 
 	// Automatically clear mock calls, instances, contexts and results before every test
 	clearMocks: true,
@@ -21,18 +21,16 @@ const config = {
 	collectCoverage: true,
 
 	// An array of glob patterns indicating a set of files for which coverage information should be collected
-	collectCoverageFrom: [ "./src/**/*" ],
+	collectCoverageFrom: ['./src/**/*'],
 
 	// The directory where Jest should output its coverage files
-	coverageDirectory: "coverage",
+	coverageDirectory: 'coverage',
 
 	// An array of regexp pattern strings used to skip coverage collection
-	coveragePathIgnorePatterns: [
-	  "/node_modules/"
-	],
+	coveragePathIgnorePatterns: ['/node_modules/'],
 
 	// Indicates which provider should be used to instrument code for coverage
-	coverageProvider: "v8",
+	coverageProvider: 'v8',
 
 	// A list of reporter names that Jest uses when writing coverage reports
 	// coverageReporters: [
@@ -78,14 +76,14 @@ const config = {
 
 	// An array of file extensions your modules use
 	moduleFileExtensions: [
-	  "js",
-	  // "mjs",
-	  // "cjs",
-	  // "jsx",
-	  // "ts",
-	  // "tsx",
-	  // "json",
-	  // "node"
+		'js',
+		// "mjs",
+		// "cjs",
+		// "jsx",
+		// "ts",
+		// "tsx",
+		// "json",
+		// "node"
 	],
 
 	// A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
