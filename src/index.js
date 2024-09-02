@@ -3,7 +3,7 @@
 import * as options from './options';
 import { generateDocs } from './writer';
 import { getDocsTrees } from './builder';
-import { getDoxdownComments } from './parser';
+import { getJsMkDocsComments } from './parser';
 import minimist from 'minimist';
 
 const totalArgs = 2;
@@ -15,7 +15,7 @@ Object.keys(argv)
 	.slice(1)
 	.forEach((k) => options.set(k, argv[k]));
 
-const comments = getDoxdownComments();
+const comments = getJsMkDocsComments();
 const docsTrees = getDocsTrees(comments);
 
 generateDocs(docsTrees);

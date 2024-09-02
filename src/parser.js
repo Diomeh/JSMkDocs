@@ -1,7 +1,7 @@
 /**
  * Traverses the source directory tree and collects an array of file
  * paths for parsing. Then uses Dox to parse all the valid files and
- * returns an array of doxdown comment objects.
+ * returns an array of JsMkDocs comment objects.
  */
 
 import * as options from './options';
@@ -30,7 +30,7 @@ const getFilePaths = (dir, filePaths = []) => {
 	return filePaths;
 };
 
-export const getDoxdownComments = () => {
+export const getJsMkDocsComments = () => {
 	const comments = [];
 	const filePaths = getFilePaths(options.get('src'));
 
