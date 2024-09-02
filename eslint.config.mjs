@@ -49,6 +49,7 @@ export default [
 				ignoreDefaultValues: true,
 				ignoreClassFieldInitialValues: true,
 			}],
+			"prefer-named-capture-group": "off",
 		},
 	},
 	{
