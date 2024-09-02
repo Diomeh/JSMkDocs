@@ -50,6 +50,11 @@ export default [
 				ignoreClassFieldInitialValues: true,
 			}],
 			"prefer-named-capture-group": "off",
+			"no-unused-vars": ["warn", {
+				"varsIgnorePattern": "[_]",
+				"argsIgnorePattern": "[_]",
+				"caughtErrorsIgnorePattern": "[_]",
+			}],
 		},
 	},
 	{

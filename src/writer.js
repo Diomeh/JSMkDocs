@@ -103,7 +103,7 @@ export const generateDocs = (docsTrees) => {
 				stream.write(newLine('pages:'));
 
 				writeMkdocs(dt, markdownPath, stream).then(
-					(filePaths) => {
+					(_filePaths) => {
 						stream.end();
 						log(`[${getTimeString()}] ${success}`);
 					},
