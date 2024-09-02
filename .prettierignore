@@ -1,0 +1,18 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Config files
+package.json
+pnpm-lock.yaml
+.idea
+.vscode
+.github
+!.github/workflows

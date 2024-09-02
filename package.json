@@ -39,7 +39,9 @@
     "build": "gulp build",
     "watch": "gulp watch",
     "test": "jest",
-    "lint": "eslint --cache --fix ."
+    "lint:behavior": "eslint --cache --fix .",
+    "lint:style": "prettier --write ./src",
+    "lint": "npm run lint:style && npm run lint:behavior"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
