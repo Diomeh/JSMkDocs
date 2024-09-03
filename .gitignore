@@ -10,6 +10,7 @@ bin
 # Local development
 .direnv
 .eslintcache
+tmp/
 
 # IDE's
 .idea
