@@ -14,10 +14,14 @@ const logInfo = (message) => build(message, 'blue');
 const logWarn = (message) => build(message, 'yellow');
 const logError = (message) => build(message, 'red');
 const logSuccess = (message) => build(message, 'green');
+const logVerbose = (message) => build(message, 'magenta');
+const logClean = (message) => console.log(message);
 
 export {
 	logInfo,
 	logWarn,
 	logError,
-	logSuccess
+	logSuccess,
+	logVerbose,
+	logClean
 };
