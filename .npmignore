@@ -6,6 +6,7 @@ node_modules
 
 # Source code
 src
+tmp/
 
 # Build process
 gulpfile.js
