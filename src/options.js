@@ -1,4 +1,4 @@
-import { logError, logInfo } from './logger';
+import { logError, logInfo } from './logger.mjs';
 
 const options = {
 	ignore: {
