@@ -1,11 +1,11 @@
-import {logClean, logError, logInfo, logVerbose} from './logger.mjs';
+import {logClean, logError, logInfo, logWarn} from './logger.mjs';
 import dox from 'dox';
 import fs from 'fs';
 import minimist from 'minimist';
 import path from 'path';
 
 /**
- * @typedef {Object} ClIArg
+ * @typedef {Object} CLIArg
  * @property {string} alias - Shortened version of the option
  * @property {string} desc - Description of the option
  * @property {string|array|RegExp|boolean} defVal - Default value of the option
@@ -13,17 +13,17 @@ import path from 'path';
  */
 
 /**
- * @typedef {Object} ClIDefaultArgs
- * @property {ClIArg} version - Display the version number
- * @property {ClIArg} help - Display the help message
- * @property {ClIArg} ignore - List of files/directories to ignore'
- * @property {ClIArg} output - Directory to output the generated markdown files
- * @property {ClIArg} regex - Regex that files must match to be parsed
- * @property {ClIArg} source - List of files/directories to parse
+ * @typedef {Object} CLIDefaultArgs
+ * @property {CLIArg} version - Display the version number
+ * @property {CLIArg} help - Display the help message
+ * @property {CLIArg} ignore - List of files/directories to ignore'
+ * @property {CLIArg} output - Directory to output the generated markdown files
+ * @property {CLIArg} regex - Regex that files must match to be parsed
+ * @property {CLIArg} source - List of files/directories to parse
  */
 
 /**
- * @typedef {Object} ClIArgs
+ * @typedef {Object} CLIArgs
  * @property {boolean} version - Display the version number
  * @property {boolean} help - Display the help message
  * @property {string[]} ignore - List of files/directories to ignore'
@@ -84,10 +84,10 @@ import path from 'path';
  * @version 0.0.1
  * @since 2024-09-02
  */
-class ClI {
+class CLI {
 	/**
 	 * @desc Default arguments for the command line interface
-	 * @type {Readonly<ClIDefaultArgs>}
+	 * @type {Readonly<CLIDefaultArgs>}
 	 * @private
 	 */
 	#defaults = Object.freeze({
@@ -131,7 +131,7 @@ class ClI {
 
 	/**
 	 * @desc Arguments set by the user
-	 * @type {ClIArgs}
+	 * @type {CLIArgs}
 	 * @private
 	 */
 	#args;
@@ -162,7 +162,7 @@ class ClI {
 	 * @type {string}
 	 * @private
 	 */
-	#verion = '0.0.1';
+	#version = '0.0.1';
 
 	/**
 	 * @desc Name of the `docs` tag
@@ -172,8 +172,29 @@ class ClI {
 	static DOC_TAG_NAME = 'docs';
 
 	/**
-	 * @desc Create a new instance of ClI immediately parsing the arguments
-	 * @constructor ClI
+	 * @desc List of tags that are usually grouped in a comment bloc
+	 * @type {Array<string>}
+	 * @static
+	 */
+	static GROUPED_TAGS = ['param', 'property', 'returns', 'return', 'throws', 'example'];
+
+	/**
+	 * @desc List of tags that are usually used to infer the title of a comment bloc
+	 * @type {Array<string>}
+	 * @static
+	 */
+	static TITLE_TAGS = ['name', 'alias', 'typedef'];
+
+	/**
+	 * @desc List of tags that are usually used to infer the description of a comment bloc
+	 * @type {Array<string>}
+	 * @static
+	 */
+	static DESC_TAGS = ['desc', 'description', 'classdesc'];
+
+	/**
+	 * @desc Create a new instance of CLI immediately parsing the arguments
+	 * @constructor CLI
 	 * @public
 	 */
 	constructor() {
@@ -190,7 +211,7 @@ class ClI {
 
 	/**
 	 * @desc Expands and persists the arguments passed by the user setting the default values if necessary
-	 * @param {ClIArgs} args - Arguments passed by the user
+	 * @param {CLIArgs} args - Arguments passed by the user
 	 * @returns {void}
 	 * @private
 	 */
@@ -244,7 +265,7 @@ class ClI {
 	 */
 	run() {
 		if (this.#args.version) {
-			logClean(this.#verion);
+			logClean(this.#version);
 			return;
 		}
 
@@ -379,11 +400,12 @@ class ClI {
 	 */
 	#loadDocComments() {
 		this.#comments = [];
+
 		// Read each file and parse it with Dox
 		this.#files.forEach((fp) => {
 			const text = fs.readFileSync(fp, 'utf8');
 			dox.parseComments(text).forEach((c) => {
-				const [docsTag] = c.tags.filter((t) => t.type === ClI.DOC_TAG_NAME);
+				const [docsTag] = c.tags.filter((t) => t.type === CLI.DOC_TAG_NAME);
 				if (!docsTag) return;
 
 				// Assign the path to the comment
@@ -457,3 +479,5 @@ class ClI {
 }
 
 export default ClI;
+
+export default CLI;
