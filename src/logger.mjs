@@ -10,7 +10,7 @@
 
 import clic from 'cli-color';
 
-const timeLength = "HH:MM:SS".length;
+const timeLength = 'HH:MM:SS'.length;
 
 /**
  * Builds a console log message with a timestamp and optional color formatting.
