@@ -6,9 +6,9 @@ let
 in
   pkgs.mkShellNoCC {
   packages = with pkgs; [
-    nodejs_22 # Node JS
-    corepack_22 # Needed for pnpm
-    nodejs_22.pkgs.pnpm
+    nodejs_20 # Node JS
+    corepack_20 # Needed for pnpm
+    nodejs_20.pkgs.pnpm
     npm-check-updates # Update node dependencies
     pyEnv # Python environment
     shellcheck # Shell script linter
