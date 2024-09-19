@@ -1,18 +1,58 @@
 import minimist from 'minimist';
 import { logClean, logError, logInfo } from './logger.mjs';
 
+/**
+ * @module CLI
+ *
+ * @description
+ * This module provides a CLI tool for generating markdown documentation for JavaScript files.
+ * It parses command-line arguments using `minimist` and applies default options such as source directories,
+ * output directories, ignore lists, regex patterns, and more. The tool supports displaying help messages
+ * and version information.
+ *
+ * @requires minimist
+ * @requires ./logger.mjs
+ *
+ * The main functionalities of this module include:
+ * - Parsing command-line arguments (`parseArgs` function)
+ * - Displaying version information (`displayVersion` function)
+ * - Displaying help information (`displayHelp` function)
+ * - Running the CLI tool (`run` function)
+ */
+
+/**
+ * @typedef {Object} CLIArg
+ * @property {string} alias - Shortened version of the option
+ * @property {string} desc - Description of the option
+ * @property {string|array|RegExp|boolean} value - Default value of the option
+ * @property {?function} [parse] - Function to parse the value of the option
+ * @property {?string} [example] - Example usage of the option
+ */
+
+/**
+ * Default configuration options for the CLI tool.
+ * Each option follows the structure defined in the {@link CLIArg} typedef.
+ *
+ * @constant
+ * @type {Object.<string, CLIArg>}
+ * @property {CLIArg} version - Option to display the version number.
+ * @property {CLIArg} help - Option to display the help message.
+ * @property {CLIArg} source - Option to specify source files/directories to parse.
+ * @property {CLIArg} ignore - Option to specify files/directories to ignore.
+ * @property {CLIArg} output - Option to specify the output directory for markdown files.
+ * @property {CLIArg} regex - Option to specify a regex pattern to match files for parsing.
+ * @property {CLIArg} pattern - Option to specify a glob pattern to match files for parsing.
+ */
 const defaults = Object.freeze({
 	version: Object.freeze({
 		alias: 'v',
 		desc: 'Display the version number',
 		value: false,
-		parse: null,
 	}),
 	help: Object.freeze({
 		alias: 'h',
 		desc: 'Display this help message',
 		value: false,
-		parse: null,
 	}),
 	source: Object.freeze({
 		alias: 's',
@@ -32,7 +72,6 @@ const defaults = Object.freeze({
 		alias: 'o',
 		desc: 'Directory to output the generated markdown files',
 		value: './docs_src',
-		parse: null,
 		example: '--output ./docs',
 	}),
 	regex: Object.freeze({
@@ -45,12 +84,17 @@ const defaults = Object.freeze({
 	pattern: Object.freeze({
 		alias: 'g',
 		desc: 'Glob pattern to match files for parsing',
-		value: '**/*.js', // Default glob pattern to match all .js files
-		parse: null,
+		value: '**/*.js',
 		example: '--pattern "**/*.ts"',
 	}),
 });
 
+/**
+ * Parses the command-line arguments using minimist and applies the appropriate default values and parsing logic.
+ * Logs errors for invalid options and processes the arguments accordingly.
+ *
+ * @returns {Object} Parsed command-line arguments with applied defaults and parsing logic.
+ */
 const parseArgs = () => {
 	// Discard the execution path and script name (argv[0] and argv[1])
 	const args = minimist(process.argv.slice(2));
@@ -89,12 +133,19 @@ const parseArgs = () => {
 	return parsedArgs;
 };
 
+/**
+ * Displays the version number of the CLI tool by reading it from the package.json file and exits the process.
+ */
 const displayVersion = () => {
 	const { version } = require('../package.json');
 	logClean(`jsmkdocs version v${version}`);
 	process.exit();
 };
 
+/**
+ * Displays the help message for the CLI tool, listing all available options and their descriptions.
+ * Also displays the default values and example usage for each option, then exits the process.
+ */
 const displayHelp = () => {
 	logClean('Usage: jsmkdocs [options]');
 	Object.keys(defaults).forEach((k) => {
@@ -130,6 +181,10 @@ const displayHelp = () => {
 	process.exit();
 };
 
+/**
+ * Main execution function for the CLI tool.
+ * Parses the arguments and calls the appropriate action (version or help) based on the user's input.
+ */
 const run = () => {
 	const args = parseArgs();
 
